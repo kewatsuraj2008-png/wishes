@@ -40,17 +40,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const photoCards = document.querySelectorAll(".photo-card");
+  const slides = document.querySelectorAll(".photo-slide");
 
-  if (photoCards.length > 0) {
-    photoCards.forEach((card, index) => {
-      card.style.transitionDelay = `${index * 180}ms`;
-    });
+  if (slides.length > 0) {
+    let activeIndex = Array.from(slides).findIndex((slide) => slide.classList.contains("is-active"));
+    if (activeIndex < 0) {
+      activeIndex = 0;
+      slides[0].classList.add("is-active");
+    }
 
-    requestAnimationFrame(() => {
-      photoCards.forEach((card) => {
-        card.classList.add("is-visible");
-      });
-    });
+    const showSlide = (nextIndex) => {
+      slides[activeIndex].classList.remove("is-active");
+      slides[nextIndex].classList.add("is-active");
+      activeIndex = nextIndex;
+    };
+
+    const cycleSlides = () => {
+      const nextIndex = (activeIndex + 1) % slides.length;
+      showSlide(nextIndex);
+    };
+
+    setInterval(cycleSlides, 2800);
   }
 });
