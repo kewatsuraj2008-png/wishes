@@ -1,4 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("bg-music");
+
+  const startMusic = () => {
+    if (!music) {
+      return;
+    }
+
+    music.play().catch(() => {
+      // Browsers may block autoplay until the user interacts with the page.
+    });
+  };
+
+  startMusic();
+  window.addEventListener("pointerdown", startMusic, { once: true });
+  window.addEventListener("keydown", startMusic, { once: true });
+
   const cake = document.querySelector(".cake-wrap");
 
   if (!cake) {
