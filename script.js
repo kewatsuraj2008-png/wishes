@@ -41,4 +41,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cake.appendChild(spark);
   }
+
+  const photoCards = document.querySelectorAll(".photo-card");
+
+  if (photoCards.length > 0) {
+    photoCards.forEach((card, index) => {
+      card.style.transitionDelay = `${index * 180}ms`;
+    });
+
+    requestAnimationFrame(() => {
+      photoCards.forEach((card) => {
+        card.classList.add("is-visible");
+      });
+    });
+  }
 });
