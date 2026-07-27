@@ -40,26 +40,72 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const slides = document.querySelectorAll(".photo-slide");
+  const slideshowPhoto = document.getElementById("slideshow-photo");
 
-  if (slides.length > 0) {
-    let activeIndex = Array.from(slides).findIndex((slide) => slide.classList.contains("is-active"));
-    if (activeIndex < 0) {
-      activeIndex = 0;
-      slides[0].classList.add("is-active");
-    }
+  if (slideshowPhoto) {
+    const photos = [
+      {
+        src: "assets/krishu-1.jpeg",
+        alt: "Krishu smiling in a casual portrait",
+      },
+      {
+        src: "assets/krishu-2.jpeg",
+        alt: "Krishu smiling in a dark printed outfit",
+      },
+      {
+        src: "assets/krishu-3.jpeg",
+        alt: "Krishu with a bright sunflower filter and a soft smile",
+      },
+      {
+        src: "assets/krishu-4.jpeg",
+        alt: "Krishu smiling outdoors in a floral dupatta",
+      },
+      {
+        src: "assets/krishu-5.jpeg",
+        alt: "Krishu wearing glasses with a playful expression",
+      },
+      {
+        src: "assets/krishu-6.jpeg",
+        alt: "Krishu smiling beside a wooden doorway",
+      },
+    ];
 
-    const showSlide = (nextIndex) => {
-      slides[activeIndex].classList.remove("is-active");
-      slides[nextIndex].classList.add("is-active");
-      activeIndex = nextIndex;
+    photos.forEach((photo) => {
+      const preload = new Image();
+      preload.src = photo.src;
+    });
+
+    let activeIndex = 0;
+    const fadeDuration = 900;
+    const holdDuration = 2200;
+    let timerId = null;
+
+    const scheduleNext = () => {
+      timerId = window.setTimeout(() => {
+        const nextIndex = (activeIndex + 1) % photos.length;
+
+        slideshowPhoto.classList.add("is-fading");
+
+        window.setTimeout(() => {
+          slideshowPhoto.src = photos[nextIndex].src;
+          slideshowPhoto.alt = photos[nextIndex].alt;
+          slideshowPhoto.classList.remove("is-fading");
+          activeIndex = nextIndex;
+          scheduleNext();
+        }, fadeDuration);
+      }, holdDuration);
     };
 
-    const cycleSlides = () => {
-      const nextIndex = (activeIndex + 1) % slides.length;
-      showSlide(nextIndex);
-    };
+    scheduleNext();
 
-    setInterval(cycleSlides, 2800);
+    window.addEventListener(
+      "beforeunload",
+      () => {
+        if (timerId) {
+          window.clearTimeout(timerId);
+        }
+      },
+      { once: true }
+    );
   }
 });
