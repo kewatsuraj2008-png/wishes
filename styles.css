@@ -142,8 +142,8 @@ h1 {
 .cake {
   position: relative;
   width: 250px;
-  height: 236px;
-  margin-top: 54px;
+  height: 252px;
+  margin-top: 68px;
   filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.25));
   transform: translateY(0);
 }
@@ -165,6 +165,124 @@ h1 {
   height: 26px;
   border-radius: 0 0 26px 26px;
   background: linear-gradient(180deg, #f55f92, #e44d84);
+}
+
+.cake-topper {
+  position: absolute;
+  left: 50%;
+  top: -38px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 4;
+}
+
+.cake-heart {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff6d6, #ffb7cf);
+  color: #ff4f92;
+  font-size: 1.15rem;
+  box-shadow:
+    0 0 0 6px rgba(255, 219, 138, 0.15),
+    0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+.cake-star {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  background: #fff1b8;
+  transform: rotate(45deg);
+  box-shadow: 0 0 16px rgba(255, 219, 138, 0.8);
+}
+
+.cake-star::before,
+.cake-star::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+}
+
+.cake-star::before {
+  transform: rotate(45deg);
+}
+
+.cake-star::after {
+  transform: rotate(-45deg);
+}
+
+.cake-ribbon {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 130px;
+  height: 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff7bb1, #ffd77d, #ff7bb1);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
+  z-index: 1;
+}
+
+.cake-ribbon::before,
+.cake-ribbon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  border-radius: 50% 50% 50% 0;
+  background: linear-gradient(135deg, #ff8cc0, #ffb7cf);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.cake-ribbon::before {
+  left: 18px;
+}
+
+.cake-ribbon::after {
+  right: 18px;
+  border-radius: 50% 50% 0 50%;
+}
+
+.sprinkle {
+  position: absolute;
+  width: 10px;
+  height: 4px;
+  border-radius: 999px;
+  background: #fff;
+  z-index: 3;
+  opacity: 0.95;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.38);
+}
+
+.sprinkle-a {
+  top: 92px;
+  left: 66px;
+  transform: rotate(18deg);
+}
+
+.sprinkle-b {
+  top: 108px;
+  left: 184px;
+  transform: rotate(-22deg);
+}
+
+.sprinkle-c {
+  top: 158px;
+  left: 52px;
+  transform: rotate(34deg);
+}
+
+.sprinkle-d {
+  top: 170px;
+  right: 58px;
+  transform: rotate(-20deg);
 }
 
 .icing {
@@ -201,8 +319,8 @@ h1 {
   position: absolute;
   left: 38px;
   right: 38px;
-  bottom: 72px;
-  height: 64px;
+  bottom: 76px;
+  height: 60px;
   border-radius: 22px;
   background: linear-gradient(180deg, #ffc9dc, #ff9ec0);
 }
@@ -212,7 +330,7 @@ h1 {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 88px;
+  height: 92px;
   border-radius: 22px 22px 26px 26px;
   background: linear-gradient(180deg, #ff96c0, #f86d9f);
 }
@@ -250,7 +368,7 @@ h1 {
   position: absolute;
   left: -26px;
   right: -26px;
-  bottom: -14px;
+  bottom: -16px;
   height: 20px;
   border-radius: 999px;
   background: linear-gradient(180deg, #fff, var(--plate));
@@ -623,7 +741,7 @@ h1 {
   }
 
   .cake {
-    transform: scale(0.92);
+    transform: scale(0.9);
     transform-origin: center top;
   }
 
